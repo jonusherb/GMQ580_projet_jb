@@ -1,0 +1,212 @@
+{% extends "index.html" %}
+
+{% block form %}
+
+<div class="container">
+    
+    <h3>
+        Trier par position et distance
+    </h3>
+    <form action="/mesures/near" method="POST">
+        <div class="row">
+            <div class="col-2">
+              <input type="text" id="position" name="position" placeholder="Latitude,Longitude">
+            </div>
+      
+            <div class="col-2">
+              <input type="number" id="distance" name="distance" placeholder="Distance">
+          </div>
+        <div class="col-1">
+          <button type="submit">Submit</button>
+        </div>
+        <div class="col-7">
+        </div>
+  
+      </div>
+    </form>
+  </div>
+
+  <div class="container">
+    <form action="/mesures/filtered" method="POST">
+      <div>
+        <h3>Calculer indicateur</h3>
+      </div>
+
+      <div class="row">
+        <div class="col-2">
+            <label for="date1">Intervalle de temps :</label>
+        </div>
+        <div class="col-2">
+          <input type="text" id="date1" name="date1" placeholder="2020-01-01">
+        </div>
+  
+        <div class="col-2">
+          <input type="text" id="date2" name="date2" placeholder="2025-12-31">
+        </div>
+        <div class="col-8">
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-2">
+            <label for="val_indicateur">Indicateur :</label>
+        </div>
+        <div class="col-2">
+            <select class="form-select" id="val_indicateur" name="val_indicateur">
+                <option>Aucun</option>
+                <option>Valeur 1</option>
+                <option>Valeur 2</option>
+                <option>Valeur 3</option>
+            </select> 
+        </div>
+  
+        <div class="col-2">
+            <select class="form-select" id="indicateur" name="indicateur">
+                <option>Aucun</option>
+                <option>Moyenne</option>
+                <option>Compte</option>
+                <option>Maximum</option>
+                <option>Minimum</option>
+            </select> 
+        </div>
+        <div class="col-6">
+        </div>
+      </div>
+
+
+
+      <div class="row">
+        <div class="col-2">
+            <label for="val_indicateur">Grouper par :</label>
+        </div>
+        <div class="col-2">
+            <select class="form-select" id="group1" name="group1">
+                <option>Aucun</option>
+                <option>Année</option>
+                <option>Mois</option>
+                <option>Type</option>
+            </select> 
+        </div>
+  
+        <div class="col-2">
+            <select class="form-select" id="group2" name="group2">
+                <option>Aucun</option>
+                <option>Année</option>
+                <option>Mois</option>
+                <option>Type</option>
+            </select> 
+        </div>
+        <div class="col-6">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-2">
+            <label for="val_indicateur">Ordonner par :</label>
+        </div>
+        <div class="col-2">
+            <select class="form-select"id="order1" name="order1">
+                <option>Aucun</option>
+                <option>Année</option>
+                <option>Mois</option>
+                <option>Jour</option>
+                <option>Type</option>
+                <option>Valeur 1</option>
+                <option>Valeur 2</option>
+                <option>Valeur 3</option>
+            </select> 
+        </div>
+  
+        <div class="col-2">
+            <select class="form-select" id="order2" name="order2">
+                <option>Aucun</option>
+                <option>Année</option>
+                <option>Mois</option>
+                <option>Jour</option>
+                <option>Type</option>
+                <option>Valeur 1</option>
+                <option>Valeur 2</option>
+                <option>Valeur 3</option>
+            </select> 
+        </div>
+
+        <div class="col-1">
+            <select class="form-select">
+                <option>ASC</option>
+                <option>DESC</option>
+            </select> 
+        </div>        
+
+        <div class="col-5">
+        
+        </div>
+        
+        
+
+      </div>
+
+      <button type="submit">Submit</button>
+
+
+
+
+
+    </form>
+  </div>
+
+{% endblock %}
+
+
+
+    {% block element %}
+
+
+
+    {% endblock %}
+
+
+
+
+{% block content %}
+
+</div>
+
+<h2>Points :</h2>
+
+<!-- Tableau des points existants -->
+<table border="1">
+    {% block header %}
+    <tr>
+        <th>ID</th>
+        <th>Latitude</th>
+        <th>Longitude</th>
+        <th>Date</th>
+        <th>Type</th>
+        <th>Valeur 1</th>
+        <th>Valeur 2</th>
+        <th>Valeur 3</th>
+    </tr>
+    {% endblock header %}
+    {% for point in points %}
+    <tr>
+        <td>{{ point[0] }}</td>
+        <td>{{ point[1] }}</td>
+        <td>{{ point[2] }}</td>
+        <td>{{ point[3] }}</td>
+        <td>{{ point[7] }}</td>
+        <td>{{ point[8] }}</td>
+        <td>{{ point[9] }}</td>
+        <td>{{ point[10] }}</td>
+        
+        <!-- <td>
+            <a href="/edit/{{ point[0] }}">Modifier</a>
+            <a href="/delete/{{ point[0] }}">Supprimer</a>
+        </td> -->
+    </tr>
+    {% endfor %}
+</table>
+</p>
+</div>
+
+{% endblock content %}

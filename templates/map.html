@@ -1,0 +1,33 @@
+{% extends "mesures.html" %}
+
+{% block form %}
+
+
+    <form action="/map/near" method="POST">
+        <div class="row">
+            <div class="col-2">
+            <input type="text" id="position" name="position" placeholder="Latitude/Longitude">
+            </div>
+
+            <div class="col-2">
+            <input type="number" id="distance" name="distance" placeholder="Distance">
+            </div>
+            <div class="col-1">
+            <button type="submit">Submit</button>
+            </div>
+            <div class="col-7">
+            </div>
+
+        </div>
+    </form>
+
+    {% endblock form%}
+
+{% block element %}
+
+{% block map %}
+
+
+{% endblock map %}
+
+{% endblock element %}
